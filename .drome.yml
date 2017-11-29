@@ -1,12 +1,6 @@
 pipeline:
-  ssh:
-    image: appleboy/drone-ssh
-    host: 54.251.156.35
-    username: ubuntu
-    key_path: ./deploy/key.pem
-    port: 22
-    script:
-      - cd /var/www/html/web-server
-      - git pull origin master
-    when:
-      status: success
+  run-tests:
+    image: node:6.3.0
+    commands:
+      - cd ./api && npm i --quiet
+      - npm test
