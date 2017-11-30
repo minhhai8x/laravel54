@@ -17,6 +17,7 @@ pipeline:
     password: ${DOCKER_PASSWORD}
     email: ${DOCKER_EMAIL}
     repo: haidocker/drone-ci
+    dockerfile: ./deploy/Dockerfile
     tags: latest
 
   slack:
