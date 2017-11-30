@@ -26,6 +26,8 @@ pipeline:
     channel: devchannel
     username: drone-ci
     icon_url: https://unsplash.it/256/256/?random
+    when:
+      event: [ push, pull_request ]
 
   clone:
     image: plugins/git
