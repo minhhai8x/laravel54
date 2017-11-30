@@ -33,6 +33,5 @@ pipeline:
     git:
       image: plugins/git
       recursive: true
-      [submodule "laravel54"]
-        path = laravel54
-        url = git@github.com:minhhai8x/laravel54.git
+      submodule_override:
+        laravel54: https://github.com/minhhai8x/laravel54.git
