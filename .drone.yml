@@ -1,6 +1,29 @@
 pipeline:
-  run-tests:
-    image: node:6.3.0
-    commands:
-      - cd ./api && npm i --quiet
-      - npm test
+  ssh:
+    image: appleboy/drone-ssh
+    host: ec2-54-251-156-35.ap-southeast-1.compute.amazonaws.com
+    username: ubuntu
+    key_path: ./deploy/key.pem
+    port: 22
+    script:
+      - echo hello
+      - echo world
+    when:
+      status: success
+
+  docker:
+    image: plugins/docker
+    username: ${DOCKER_USERNAME}
+    password: ${DOCKER_PASSWORD}
+    email: ${DOCKER_EMAIL}
+    repo: haidocker/drone-ci
+    tags: latest
+
+  slack:
+    image: plugins/slack
+    webhook: https://minhhaisl.slack.com/services/${SLACK_SERVICE}
+    channel: devchannel
+    username: drone-ci
+    icon_url: https://unsplash.it/256/256/?random
+    when:
+      status: [ success, failure ]
