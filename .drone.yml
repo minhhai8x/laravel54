@@ -1,6 +1,36 @@
 pipeline:
-  run-tests:
-    image: node:6.3.0
-    commands:
-      - cd ./api && npm i --quiet
-      - npm test
+  ssh:
+    image: appleboy/drone-ssh
+    host: ec2-54-251-156-35.ap-southeast-1.compute.amazonaws.com
+    username: ubuntu
+    key_path: ./deploy/key.pem
+    port: 22
+    script:
+      - cd /var/www/html/web-server/
+      - git pull origin master
+    when:
+      status: success
+
+  # docker:
+  #   image: plugins/docker
+  #   username: ${DOCKER_USERNAME}
+  #   password: ${DOCKER_PASSWORD}
+  #   email: ${DOCKER_EMAIL}
+  #   repo: haidocker/drone-ci
+  #   dockerfile: ./deploy/Dockerfile
+  #   tags: latest
+
+  slack:
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/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
+    channel: devchannel
+    username: drone-ci
+    icon_url: https://unsplash.it/256/256/?random
+    when:
+      status: [ success, failure ]
+
+  clone:
+    image: plugins/git
+    recursive: true
+    submodule_override:
+      laravel54: https://github.com/minhhai8x/laravel54.git
