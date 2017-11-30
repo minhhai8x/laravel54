@@ -24,7 +24,7 @@ pipeline:
     image: plugins/slack
     webhook: https://hooks.slack.com/services/${SLACK_SERVICE}
     channel: devchannel
-    username: drone-ci
+    username: incoming-webhook
     icon_url: https://unsplash.it/256/256/?random
     when:
       event: [ push, pull_request ]
