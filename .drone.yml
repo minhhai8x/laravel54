@@ -22,7 +22,7 @@ pipeline:
 
   slack:
     image: plugins/slack
-    webhook: https://minhhaisl.slack.com/services/${SLACK_SERVICE}
+    webhook: https://hooks.slack.com/services/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
     channel: devchannel
     username: drone-ci
     icon_url: https://unsplash.it/256/256/?random
