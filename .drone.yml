@@ -27,7 +27,7 @@ pipeline:
     username: incoming-webhook
     icon_url: https://unsplash.it/256/256/?random
     when:
-      event: [ push, pull_request ]
+      event: [ commit_comment, issues, pull_request ]
 
   clone:
     image: plugins/git
