@@ -15,4 +15,10 @@ class DemoController extends Controller
     {
       return 'Demo POST page with ID: ' . $id;
     }
+
+    public function getUserName($id)
+    {
+      $user = User::find($id)
+      return 'User name is: ' . $user->name;
+    }
 }
