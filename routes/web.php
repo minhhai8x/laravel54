@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/demo/{title?}', 'DemoController@getList');
+Route::get('/demo/data/{id?}', 'DemoController@postData');
