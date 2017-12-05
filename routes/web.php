@@ -15,11 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/demo/{title?}', 'DemoController@index');
-Route::post('/demo', 'DemoController@postData');
-
-Route::resource('/demo', 'DemoController');
-
-Route::any('/demo', function () {
-    //
-});
+Route::get('/demo/{title?}', 'DemoController@getList');
