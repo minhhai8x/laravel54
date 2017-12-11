@@ -35,6 +35,22 @@ pipeline:
     submodule_override:
       laravel54: https://github.com/minhhai8x/laravel54.git
   
+  ecr-auth:
+    image: omerxx/drone-ecr-auth
+    pull: true
+    privileged: true
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_KEY}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - $(aws ecr get-login --no-include-email --region ap-southeast-1)
+      - docker pull ${AWS_ECR_REPO}
+
+  build:
+    image: ${AWS_ECR_REPO}
+
   ecr:
     image: plugins/ecr
     access_key: ${AWS_ACCESS_KEY}
