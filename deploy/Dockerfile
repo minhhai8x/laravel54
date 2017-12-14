@@ -1,32 +1,19 @@
-#
-# Ubuntu Dockerfile
-#
-# https://github.com/dockerfile/ubuntu
-#
-
-# Pull base image.
 FROM ubuntu:16.04
 
-# Install.
-RUN \
-  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get -y upgrade && \
-  apt-get install -y build-essential && \
-  apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git htop man unzip vim wget && \
-  rm -rf /var/lib/apt/lists/*
+# Install dependencies
+RUN apt-get update -y
+RUN apt-get install -y apache2
 
-# Add files.
-ADD root/.bashrc /root/.bashrc
-ADD root/.gitconfig /root/.gitconfig
-ADD root/.scripts /root/.scripts
+# Install apache and write hello world message
+RUN echo "Hello World!" > /var/www/index.html
 
-# Set environment variables.
-ENV HOME /root
+# Configure apache
+RUN a2enmod rewrite
+RUN chown -R www-data:www-data /var/www
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
 
-# Define working directory.
-WORKDIR /root
+EXPOSE 80
 
-# Define default command.
-CMD ["bash"]
+CMD ["/usr/sbin/apache2", "-D",  "FOREGROUND"]
