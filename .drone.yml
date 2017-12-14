@@ -35,12 +35,12 @@ pipeline:
     submodule_override:
       laravel54: https://github.com/minhhai8x/laravel54.git
 
-  ecr:
-    image: plugins/ecr
-    access_key: ${AWS_ACCESS_KEY}
-    secret_key: ${AWS_SECRET_KEY}
-    repo: ${AWS_ECR_REPO}
-    registry: ${AWS_ECR_REGISTRY}
-    tags: latest
-    region: ap-southeast-1
-    dockerfile: ./deploy/Dockerfile
+  # ecr:
+  #   image: plugins/ecr
+  #   access_key: ${AWS_ACCESS_KEY}
+  #   secret_key: ${AWS_SECRET_KEY}
+  #   repo: ${AWS_ECR_REPO}
+  #   registry: ${AWS_ECR_REGISTRY}
+  #   tags: latest
+  #   region: ap-southeast-1
+  #   dockerfile: ./deploy/Dockerfile
