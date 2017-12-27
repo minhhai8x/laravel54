@@ -53,7 +53,8 @@ pipeline:
     from: ${EMAIL_FROM}
     subject: 'Test mail subject'
     body: 'Test mail'
-    recipients: ['${RECIPIENT_EMAIL}']
+    recipients:
+      - ${RECIPIENT_EMAIL}
     recipients_only: true
     skip_verify: true
     when:
