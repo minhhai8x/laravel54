@@ -51,7 +51,6 @@ pipeline:
     username: ${EMAIL_UNAME}
     password: ${EMAIL_PWD}
     from: ${EMAIL_FROM}
-    recipients: [ ${RECIPIENT_EMAIL} ]
     skip_verify: true
     when:
       status: [ success ]
