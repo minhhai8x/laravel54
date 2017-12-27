@@ -1,7 +1,7 @@
 pipeline:
   ssh:
     image: appleboy/drone-ssh
-    host: ec2-54-251-156-35.ap-southeast-1.compute.amazonaws.com
+    host: ec2-54-169-3-169.ap-southeast-1.compute.amazonaws.com
     username: ubuntu
     key_path: ./deploy/key.pem
     port: 22
