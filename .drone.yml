@@ -44,3 +44,14 @@ pipeline:
   #   tags: latest
   #   region: ap-southeast-1
   #   dockerfile: ./deploy/Dockerfile
+
+  notify:
+    image: drillster/drone-email
+    host: smtp.gmail.com
+    username: ${EMAIL_UNAME}
+    password: ${EMAIL_PWD}
+    from: ${EMAIL_FROM}
+    recipients: [ ${RECIPIENT_EMAIL} ]
+    skip_verify: true
+    when:
+      status: [ success ]
