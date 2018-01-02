@@ -11,15 +11,6 @@ pipeline:
     when:
       status: success
 
-  # docker:
-  #   image: plugins/docker
-  #   username: ${DOCKER_USERNAME}
-  #   password: ${DOCKER_PASSWORD}
-  #   email: ${DOCKER_EMAIL}
-  #   repo: haidocker/drone-ci
-  #   dockerfile: ./deploy/Dockerfile
-  #   tags: latest
-
   slack:
     image: plugins/slack
     webhook: https://hooks.slack.com/services/${SLACK_SERVICE}
@@ -35,27 +26,14 @@ pipeline:
     submodule_override:
       laravel54: https://github.com/minhhai8x/laravel54.git
 
-  # ecr:
-  #   image: plugins/ecr
-  #   access_key: ${AWS_ACCESS_KEY}
-  #   secret_key: ${AWS_SECRET_KEY}
-  #   repo: ${AWS_ECR_REPO}
-  #   registry: ${AWS_ECR_REGISTRY}
-  #   tags: latest
-  #   region: ap-southeast-1
-  #   dockerfile: ./deploy/Dockerfile
-
-  notify:
-    image: drillster/drone-email
-    host: smtp.gmail.com
-    username: ${EMAIL_UNAME}
-    password: ${EMAIL_PWD}
-    from: ${EMAIL_FROM}
-    subject: 'Test mail subject'
-    body: 'Test mail'
-    recipients:
-      - ${RECIPIENT_EMAIL}
-    recipients_only: true
-    skip_verify: true
-    when:
-      status: [ success ]
+  backend:
+    image: laradock/workspace:1.8-71
+    group: laravel
+    commands:
+      - php -v
+      - composer -V
+      - cp .env.example .env
+      - composer install --prefer-dist
+      - php artisan key:generate
+      - php artisan migrate
+      - ./vendor/bin/phpunit
