@@ -6,12 +6,8 @@ pipeline:
     key_path: ./deploy/key.pem
     port: 22
     script:
-      - ssh-add -k $HOME/.ssh/ssh_git_rsa
       - cd /var/www/html/web-server/
       - git pull origin master
-    proxy_host: ec2-54-169-3-169.ap-southeast-1.compute.amazonaws.com
-    proxy_user: ubuntu
-    proxy_port: 22
     when:
       status: success
 
