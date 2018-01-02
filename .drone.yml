@@ -6,6 +6,7 @@ pipeline:
     key_path: ./deploy/key.pem
     port: 22
     script:
+      - ssh-add -k $HOME/.ssh/ssh_git_rsa
       - cd /var/www/html/web-server/
       - git pull origin master
     when:
