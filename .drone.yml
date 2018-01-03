@@ -27,7 +27,7 @@ pipeline:
     group: laravel
     commands:
       - php -v && composer -V
-      - cd deploy && /bin/bash ./deploy/env_config.sh --db-name dbname --db-uname postgres --db-pwd postgres
+      - cd deploy && /bin/bash env_config.sh --db-name dbname --db-uname postgres --db-pwd postgres
       - cd ../ && ls -la
       # - composer install --prefer-dist
       # - php artisan key:generate
