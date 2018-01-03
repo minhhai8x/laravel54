@@ -20,12 +20,6 @@ pipeline:
     when:
       event: [ push ]
 
-  clone:
-    image: plugins/git
-    recursive: true
-    submodule_override:
-      laravel54: https://github.com/minhhai8x/laravel54.git
-
   # backend:
   #   image: laradock/workspace:1.8-71
   #   group: laravel
