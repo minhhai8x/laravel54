@@ -6,6 +6,8 @@ pipeline:
     key_path: ./deploy/key.pem
     port: 22
     script:
+      - eval "$(ssh-agent -s)"
+      - ssh-add -k $HOME/.ssh/ssh_git_rsa
       - cd /var/www/html/web-server/
       - git pull origin master
     when:
@@ -20,20 +22,14 @@ pipeline:
     when:
       event: [ push ]
 
-  clone:
-    image: plugins/git
-    recursive: true
-    submodule_override:
-      laravel54: https://github.com/minhhai8x/laravel54.git
-
-  # backend:
-  #   image: laradock/workspace:1.8-71
-  #   group: laravel
-  #   commands:
-  #     - php -v
-  #     - composer -V
-  #     - cp .env.example .env
-  #     - composer install --prefer-dist
-  #     - php artisan key:generate
-  #     - php artisan migrate
-  #     - ./vendor/bin/phpunit
+  backend:
+    image: laradock/workspace:1.8-71
+    group: laravel
+    commands:
+      - php -v
+      - composer -V
+      - cp .env.example .env
+      - composer install --prefer-dist
+      - php artisan key:generate
+      - php artisan migrate
+      - ./vendor/bin/phpunit
