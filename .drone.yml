@@ -28,7 +28,7 @@ pipeline:
     commands:
       - php -v
       - composer -V
-      - /bin/bash ./deploy/env_config.sh --db-name dbname --db-uname postgres --db-pwd postgres
+      - /bin/bash deploy/env_config.sh --db-name dbname --db-uname postgres --db-pwd postgres
       # - composer install --prefer-dist
       # - php artisan key:generate
       # - php artisan migrate
