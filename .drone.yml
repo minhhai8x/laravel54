@@ -25,10 +25,14 @@ pipeline:
   backend:
     image: laradock/workspace:1.8-71
     group: laravel
+    environment:
+      - PG_DB_DATABASE=dbname
+      - PG_DB_USERNAME=postgres
+      - PG_DB_PASSWORD=postgres
     commands:
       - php -v
       - composer -V
-      - /bin/bash ./deploy/env_config.sh --db-name "${PG_DB_DATABASE}" --db-uname "${PG_DB_USERNAME}" --db-pwd "${PG_DB_PASSWORD}"
+      - /bin/bash ./deploy/env_config.sh --db-name $PG_DB_DATABASE --db-uname $PG_DB_USERNAME --db-pwd $PG_DB_PASSWORD
       # - composer install --prefer-dist
       # - php artisan key:generate
       # - php artisan migrate
