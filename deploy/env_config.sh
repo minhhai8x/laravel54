@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setting path
-root_path=$(cd ..; pwd)
+root_path=$(pwd)
 
 PG_DB_DATABASE=$2
 PG_DB_USERNAME=$4
