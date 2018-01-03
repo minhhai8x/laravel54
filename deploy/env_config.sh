@@ -3,9 +3,9 @@
 # Setting path
 root_path=$(cd ..; pwd)
 
-PG_DB_DATABASE = $2
-PG_DB_USERNAME = $4
-PG_DB_PASSWORD = $6
+PG_DB_DATABASE=$2
+PG_DB_USERNAME=$4
+PG_DB_PASSWORD=$6
 
 # Database setting
 echo '- Start update Database setting...'
