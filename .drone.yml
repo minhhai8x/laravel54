@@ -28,6 +28,7 @@ pipeline:
     commands:
       - php -v
       - composer -V
+      - cp .env.example .env
       - composer install --prefer-dist
       - php artisan key:generate
       - php artisan migrate
