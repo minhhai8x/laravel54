@@ -33,3 +33,11 @@ pipeline:
       - php artisan key:generate
       - php artisan migrate
       # - ./vendor/bin/phpunit
+
+services:
+  postgres:
+    image: postgres:9.5.5
+    environment:
+      - POSTGRES_DB=dbname
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
