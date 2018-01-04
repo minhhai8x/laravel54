@@ -32,7 +32,7 @@ pipeline:
       - composer install --prefer-dist
       - php artisan key:generate
       - php artisan migrate
-      # - ./vendor/bin/phpunit
+      - ./vendor/bin/phpunit
 
 services:
   postgres:
