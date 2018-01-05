@@ -19,4 +19,8 @@ install -t /usr/local/bin phantomjs-2.1.1-linux-x86_64/bin/phantomjs
 rm -rf phantomjs-2.1.1-linux-x86_64
 rm phantomjs-2.1.1-linux-x86_64.tar.bz2
 
+pkill -9 phantomjs
+sleep 5
+/usr/local/bin/phantomjs --ignore-ssl-errors=true --webdriver=4444
+
 popd
