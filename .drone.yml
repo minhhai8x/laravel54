@@ -39,6 +39,7 @@ pipeline:
       - composer install --prefer-dist
       - php artisan key:generate
       - php artisan migrate
+      - php artisan migrate --database=sqlite_testing
       - echo "UNIT Testing" && ./vendor/bin/phpunit
       - echo "Acceptance Testing" && ./vendor/bin/codecept run acceptance -d
 
