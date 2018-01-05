@@ -6,7 +6,7 @@ pushd /tmp
 
 # install dependencies
 apt-get update  -y
-apt-get install build-essential chrpath git-core libssl-dev libfontconfig1-dev -y
+apt-get install build-essential chrpath git-core libssl-dev libfontconfig1-dev wget -y
 
 # download phantomjs and decompress
 wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
