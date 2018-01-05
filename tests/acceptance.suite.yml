@@ -12,7 +12,7 @@ modules:
         - \Helper\Acceptance
         - WebDriver:
             browser: chrome
-            url: http://127.0.0.1
+            url: http://localhost
         - Laravel5:
             part: ORM
             environment_file: .env
