@@ -15,4 +15,4 @@ modules:
             url: http://localhost
         - Laravel5:
             part: ORM
-            environment_file: .env
+            environment_file: .env.testing
