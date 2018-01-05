@@ -27,7 +27,6 @@ pipeline:
     commands:
       - yarn install
       - yarn run
-      - yarn test
 
   backend:
     image: laradock/workspace:1.8-71
