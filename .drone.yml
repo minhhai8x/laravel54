@@ -32,7 +32,9 @@ pipeline:
       - composer install --prefer-dist
       - php artisan key:generate
       - php artisan migrate
-      - ./vendor/bin/phpunit
+      - ./vendor/bin/codecept bootstrap
+      - echo "UNIT Testing" && ./vendor/bin/phpunit
+      - echo "Acceptance Testing" && ./vendor/bin/codecept run acceptance -d
 
 services:
   postgres:

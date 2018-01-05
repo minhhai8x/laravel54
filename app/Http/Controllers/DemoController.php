@@ -8,17 +8,19 @@ class DemoController extends Controller
 {
     public function getList($title = 'list item')
     {
-      return 'Demo page ' . $title;
+      $data = [
+        'title' => $title,
+        'content' =>  'The title is: ' . $title,
+      ];
+      return view('demo', $data);
     }
 
     public function postData($id = 1)
     {
-      return 'Demo POST page with ID: ' . $id;
-    }
-
-    public function getUserName($id)
-    {
-      $user = User::find($id)
-      return 'User name is: ' . $user->name;
+      $data = [
+        'title' => 'Post page',
+        'content' =>  'Post ID is: ' . $id,
+      ];
+      return view('demo', $data);
     }
 }
