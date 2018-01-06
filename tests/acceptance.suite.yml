@@ -13,6 +13,3 @@ modules:
         - WebDriver:
             browser: chrome
             url: http://localhost
-        - Laravel5:
-            part: ORM
-            environment_file: .env.testing
