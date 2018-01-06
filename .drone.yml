@@ -22,7 +22,7 @@ pipeline:
     when:
       event: [ push ]
 
-  nodejs:
+  nodetest:
     image: node:latest
     commands:
       - yarn install
