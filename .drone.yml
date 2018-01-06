@@ -34,11 +34,11 @@ pipeline:
     commands:
       - php -v && composer -V
       - /bin/bash deploy/env_config.sh --db-name dbname --db-uname postgres --db-pwd postgres
-      - /bin/bash deploy/phantomjs.sh
       - ls -la
       - composer install --prefer-dist
       - php artisan key:generate
       - php artisan migrate
+      - /bin/bash deploy/phantomjs.sh
       - echo "UNIT Testing" && ./vendor/bin/phpunit
       - echo "Acceptance Testing" && ./vendor/bin/codecept run acceptance -d
 
