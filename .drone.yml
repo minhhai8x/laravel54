@@ -22,14 +22,33 @@ pipeline:
     when:
       event: [ push ]
 
+  nodetest:
+    image: node:latest
+    commands:
+      - yarn install
+      - yarn run
+
   backend:
     image: laradock/workspace:1.8-71
     group: laravel
     commands:
-      - php -v
-      - composer -V
-      - /bin/bash ./deploy/env_config.sh --db-name ${PG_DB_DATABASE} --db-uname ${PG_DB_USERNAME} --db-pwd ${PG_DB_PASSWORD}
+      - php -v && composer -V
+      - /bin/bash deploy/env_config.sh --db-name dbname --db-uname postgres --db-pwd postgres
+      - ls -la
       - composer install --prefer-dist
       - php artisan key:generate
       - php artisan migrate
-      - ./vendor/bin/phpunit
+      - /bin/bash deploy/phantomjs.sh
+      - echo "UNIT Testing" && ./vendor/bin/phpunit
+      - echo "Acceptance Testing" && ./vendor/bin/codecept run acceptance -d
+
+services:
+  postgres:
+    image: postgres:9.5.5
+    environment:
+      - POSTGRES_DB=dbname
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  selenium:
+    image: selenium/standalone-chrome
