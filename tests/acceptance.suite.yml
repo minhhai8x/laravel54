@@ -8,8 +8,8 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://laravel5.local
-        - \Helper\Acceptance
+            url: http://localhost
+        #- \Helper\Acceptance
         # - WebDriver:
         #     browser: chrome
         #     url: http://localhost
