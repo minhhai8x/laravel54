@@ -50,7 +50,14 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
-  selenium:
-    image: selenium/standalone-chrome
+  hub:
+    image: selenium/hub:3.8.1-dubnium
     ports:
       - "4444:4444"
+
+  chrome:
+    image: selenium/node-chrome:3.8.1-dubnium
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      - HUB_HOST=hub
