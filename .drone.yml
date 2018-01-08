@@ -52,11 +52,12 @@ services:
 
   selenium:
     image: selenium/hub
+    ports:
+      - "4444:4444"
 
   chrome:
     image: selenium/node-chrome
     environment:
-      - SE_OPTS="-port 4445"
-      - HUB_PORT_4444_TCP_ADDR=127.0.0.1
+      - HUB_PORT_4444_TCP_ADDR=selenium
       - HUB_PORT_4444_TCP_PORT=4444
 
