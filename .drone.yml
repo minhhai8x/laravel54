@@ -22,11 +22,15 @@ pipeline:
     when:
       event: [ push ]
 
-  nodetest:
-    image: node:latest
-    commands:
-      - yarn install
-      - yarn run
+  # nodetest:
+  #   image: node:latest
+  #   commands:
+  #     - node -v
+  #     - npm -v
+  #     - yarn --version
+  #     - yarn config set cache-folder .yarn-cache
+  #     - yarn install
+  #     - yarn run production
 
   backend:
     image: laradock/workspace:1.8-71
