@@ -29,16 +29,6 @@ pipeline:
       # event: [ push ]
       status: [ success, failure ]
 
-  # nodetest:
-  #   image: node:latest
-  #   commands:
-  #     - node -v
-  #     - npm -v
-  #     - yarn --version
-  #     - yarn config set cache-folder .yarn-cache
-  #     - yarn install
-  #     - yarn run production
-
   backend:
     image: laradock/workspace:1.8-71
     group: laravel
@@ -49,7 +39,6 @@ pipeline:
       - composer install --prefer-dist
       - php artisan key:generate
       - php artisan migrate
-      - /bin/bash deploy/phantomjs.sh
       - echo "UNIT Testing" && ./vendor/bin/phpunit
       - echo "Acceptance Testing" && ./vendor/bin/codecept run acceptance -d
 
@@ -61,5 +50,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
-  selenium:
-    image: selenium/standalone-chrome
+  phantomjs:
+    image: davert/phantomjs-env
+    environment:
+      - APP_PORT=8000
+      - APP_HOST=myapp
