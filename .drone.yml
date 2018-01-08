@@ -39,6 +39,7 @@ pipeline:
       - composer install --prefer-dist
       - php artisan key:generate
       - php artisan migrate
+      - /bin/bash deploy/phantomjs.sh
       - echo "UNIT Testing" && ./vendor/bin/phpunit
       - echo "Acceptance Testing" && ./vendor/bin/codecept run acceptance -d
 
@@ -50,12 +51,5 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
-  hub:
-    image: selenium/hub:3.8.1-dubnium
-    ports:
-      - "4444:4444"
-
-  chrome:
-    image: selenium/node-chrome:3.8.1-dubnium
-    environment:
-      - HUB_HOST=hub
+  selenium:
+    image: selenium/standalone-chrome
