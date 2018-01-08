@@ -32,8 +32,6 @@ pipeline:
   backend:
     image: laradock/workspace:1.8-71
     group: laravel
-    environment:
-      - SELENIUM_PORT=4444
     commands:
       - php -v && composer -V
       - /bin/bash deploy/env_config.sh --db-name dbname --db-uname postgres --db-pwd postgres
