@@ -29,12 +29,6 @@ pipeline:
       # event: [ push ]
       status: [ success, failure ]
 
-  nodetest:
-    image: node:latest
-    commands:
-      - yarn install
-      - yarn run
-
   backend:
     image: laradock/workspace:1.8-71
     group: laravel
@@ -45,7 +39,6 @@ pipeline:
       - composer install --prefer-dist
       - php artisan key:generate
       - php artisan migrate
-      - /bin/bash deploy/phantomjs.sh
       - echo "UNIT Testing" && ./vendor/bin/phpunit
       - echo "Acceptance Testing" && ./vendor/bin/codecept run acceptance -d
 
