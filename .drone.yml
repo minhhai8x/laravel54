@@ -29,6 +29,12 @@ pipeline:
       # event: [ push ]
       status: [ success, failure ]
 
+  nodetest:
+    image: node:latest
+    commands:
+      - yarn install
+      - yarn run
+
   backend:
     image: laradock/workspace:1.8-71
     group: laravel
