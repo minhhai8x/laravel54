@@ -54,4 +54,4 @@ services:
     image: davert/phantomjs-env
     environment:
       - APP_PORT=8000
-      - APP_HOST=myapp
+      - APP_HOST=localhost
