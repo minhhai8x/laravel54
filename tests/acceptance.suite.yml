@@ -8,7 +8,7 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://localhost:4444
+            url: http://backend
         #- \Helper\Acceptance
         # - WebDriver:
         #     browser: chrome
