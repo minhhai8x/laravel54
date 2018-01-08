@@ -8,7 +8,7 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://selenium
+            url: http://backend
         #- \Helper\Acceptance
         # - WebDriver:
         #     browser: chrome

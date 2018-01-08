@@ -32,6 +32,8 @@ pipeline:
   backend:
     image: laradock/workspace:1.8-71
     group: laravel
+    environment:
+      - SELENIUM_PORT=4444
     commands:
       - php -v && composer -V
       - /bin/bash deploy/env_config.sh --db-name dbname --db-uname postgres --db-pwd postgres
@@ -49,15 +51,3 @@ services:
       - POSTGRES_DB=dbname
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-
-  selenium:
-    image: selenium/hub
-    ports:
-      - "4444:4444"
-
-  chrome:
-    image: selenium/node-chrome
-    environment:
-      - HUB_PORT_4444_TCP_ADDR=selenium
-      - HUB_PORT_4444_TCP_PORT=4444
-
