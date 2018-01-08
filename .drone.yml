@@ -50,8 +50,13 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
-  phantomjs:
-    image: davert/phantomjs-env
+  selenium:
+    image: selenium/hub
+
+  chrome:
+    image: selenium/node-chrome
     environment:
-      - APP_PORT=8000
-      - APP_HOST=localhost
+      SE_OPTS: "-port 4445"
+      HUB_PORT_4444_TCP_ADDR: 127.0.0.1
+      HUB_PORT_4444_TCP_PORT: 4444
+
