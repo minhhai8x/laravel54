@@ -57,7 +57,5 @@ services:
 
   chrome:
     image: selenium/node-chrome:3.8.1-dubnium
-    volumes:
-      - /dev/shm:/dev/shm
     environment:
       - HUB_HOST=hub
