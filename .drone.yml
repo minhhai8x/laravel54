@@ -19,18 +19,15 @@ pipeline:
     channel: devchannel
     username: incoming-webhook
     icon_url: https://unsplash.it/256/256/?random
+    template: >
+      {{#success build.status}}
+        build {{build.number}} succeeded. Good job.
+      {{else}}
+        build {{build.number}} failed. Fix me please.
+      {{/success}}
     when:
-      event: [ push ]
-
-  # nodetest:
-  #   image: node:latest
-  #   commands:
-  #     - node -v
-  #     - npm -v
-  #     - yarn --version
-  #     - yarn config set cache-folder .yarn-cache
-  #     - yarn install
-  #     - yarn run production
+      # event: [ push ]
+      status: [ success, failure ]
 
   backend:
     image: laradock/workspace:1.8-71
@@ -42,7 +39,6 @@ pipeline:
       - composer install --prefer-dist
       - php artisan key:generate
       - php artisan migrate
-      - /bin/bash deploy/phantomjs.sh
       - echo "UNIT Testing" && ./vendor/bin/phpunit
       - echo "Acceptance Testing" && ./vendor/bin/codecept run acceptance -d
 
