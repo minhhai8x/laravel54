@@ -27,8 +27,7 @@ pipeline:
         build {{build.number}} failed. Fix me please.
       {{/success}}
     when:
-      # event: [ push ]
-      status: [ success, failure ]
+      status: [success, failure]
 
   backend:
     image: laradock/workspace:1.8-71
