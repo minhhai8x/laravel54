@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">Laravel</div>
-
+                <p>Version: 1.0</p>
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
